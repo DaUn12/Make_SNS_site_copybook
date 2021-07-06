@@ -4,8 +4,8 @@ from django.shortcuts import render
 # Create your views here.
 
 def hello_world(request):
-    return  render(request,'base.html')    # HttpResponse 라는 객체를 반환    // 여기에 출력
-                                            # 붉은색 표시일때 alt+enter 눌러서 from.... 누르면 import 할 필요 x
+    return  render(request,'accountapp/hello_world.html')    # HttpResponse 라는 객체를 반환    // 여기에 출력
+                                                        # 붉은색 표시일때 alt+enter 눌러서 from.... 누르면 import 할 필요 x
 
 
 
