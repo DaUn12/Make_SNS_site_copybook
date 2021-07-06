@@ -2,14 +2,15 @@
 <html lang="en">
 
 {% include 'head.html' %}
+
 <body>
 
 {% include 'header.html'  %}        {#  장고가 개입해서 사용하겠다라는 표시#}
-
+<hr>                                {# 구분선 넣기 #}
 {% block content %}                 {# block content 를 선언 #}
 {% endblock %}
 
-
+<hr>
 
 {% include 'footer.html' %}          {# include : 고정적인 것을 html 파일로로대체#}
 
