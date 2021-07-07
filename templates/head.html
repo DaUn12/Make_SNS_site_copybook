@@ -1,3 +1,5 @@
+{% load static %}               {# static 파일을 로드한다 #}
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,4 +13,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+{#     default css link   #}        {#  디폴트 css 링크를 걸음  #}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+
+    {#  알아서 가져올 사이트를 제공 텍스트 파일을 가져올건데 css확장자로 가져올 거라는 말임 #}
 </head>
