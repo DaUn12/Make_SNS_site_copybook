@@ -3,9 +3,28 @@
 {% extends 'base.html' %}           {# 다 만들어논 base.html 파일을 가져옴 #}
 
 {% block content %}
+    <style> {#style 로 쓰면 css 구문 처럼 이용할 수 있음, 너비와 높이를 지정#}
+        .testing{
+            background-color: yellow;
+            margin:  1rem;
+            width: 40px;
+            height: 48px;
+            border-radius: .5rem;   {#.5 = 0.5#}
+        }
+
+    </style>
 
     <div style="height: 10rem; background-color: aqua; margin: 2rem; border-radius: 1rem;">  {# 마진 : 여유공간 //border-radius : 모서리 둥글게하는 정도#}
         <h1>Test</h1>
+
+    {# block 은 부모의 속성에 따라 달라짐#}
+    <div class="testing" style="display: block">block </div>
+    <div class="testing" style="display: inline"> inline</div>
+    <div class="testing" style="display: none"> none</div>
+    <div class="testing" style="display: inline-block"> inline block </div>
+
+
+
     </div>
 
 
