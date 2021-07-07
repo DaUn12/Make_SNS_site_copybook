@@ -10,21 +10,23 @@
             width: 40px;
             height: 48px;
             border-radius: .5rem;   {#.5 = 0.5#}
+            display: inline-block
         }
 
     </style>
 
-    <div style="height: 10rem; background-color: aqua; margin: 2rem; border-radius: 1rem;">  {# 마진 : 여유공간 //border-radius : 모서리 둥글게하는 정도#}
+    <div style="height: 10rem; background-color: aqua; margin: 2rem; border-radius: 1rem; font-size: 2rem">  {# 마진 : 여유공간 //border-radius : 모서리 둥글게하는 정도#}
+{#     overflow : scroll   -> 다 나오는데 스크롤 형식으로 되어있음 #}
+{#     overflow : hidden  -> 넘치는 것은 안보이게 하기#}
         <h1>Test</h1>
 
     {# block 은 부모의 속성에 따라 달라짐#}
-    <div class="testing" style="display: block">block </div>
-    <div class="testing" style="display: inline"> inline</div>
-    <div class="testing" style="display: none"> none</div>
-    <div class="testing" style="display: inline-block"> inline block </div>
-
-
-
+        <div class="testing" style="height: 48px; width: 48px"> </div>
+        <div class="testing" style="height: 3rem; width: 3rem"> </div>  {# 최상위 폰트사이즈에만 영향을받음  #}
+        <div class="testing" style="height: 3em; width: 3em"> </div>    {#부모의 폰트사이즈 배수에 영향을받아서 커지게됨#}
+        <div class="testing" style="height: 30%; width: 30%"> </div>    {#부모의 요소에 상속받음#}
+{#제일 상단의 기본 rem 은 16 rem#}
+    {# 블럭을 많이 넣으면 #}
     </div>
 
 
