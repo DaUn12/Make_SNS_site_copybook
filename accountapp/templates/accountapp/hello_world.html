@@ -22,6 +22,13 @@
 
     <div style = "margin: 2rem; text-align : center">
         <h1> http method</h1>
+
+        <form action="/accounts/hello_world/" method="POST">      {# 어느 주소로 보낼지, post 메소드로 보냄#}
+            {% csrf_token %}                   {# csrf 해킹 위험을 방지하기 위해 #}
+            <input type="submit" class="btn btn-outline-dark rounded-pill px-5">
+            {# input type : 버튼이 하나 생김 // rounded-pill : 버튼 모서리 둥굴게 // px-5 : 내부 좌우 여백 늘리기(숫자는1~5) // mt-3 : 마진 탑 3늘리기 #}
+        </form>
+
         <h3> {{ text }}</h3>
     </div>
 
