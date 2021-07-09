@@ -1,6 +1,6 @@
 .pragmatic_header_logo{
     margin: 2rem 0;
-     font-family: 'Anton', sans-serif;"
+     font-family: 'Anton', sans-serif;
 }
 /*  . = 클래스 선언*/
 
@@ -9,7 +9,7 @@
 
 }
 /* 웹사이트에서 분리적으로 하면 좀더 편하고 일관됨됨*/
-pragmatic_footer_logo{
+.pragmatic_footer_logo{
     margin: 1.5rem 0;
     font-family: 'Anton', sans-serif;
 }
