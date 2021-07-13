@@ -1,7 +1,12 @@
-from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView
+
 from accountapp.models import NewModel
 
 
@@ -15,11 +20,11 @@ def hello_world(request):
         new_model.text = temp
         new_model.save()            # DB에 저장
 
-        data_list = NewModel.objects.all()
+        # data_list = NewModel.objects.all()
         # 뉴모델 안에있는 모든 값들이 data_list 에 저장됨
 
-        return  render(request,'accountapp/hello_world.html'
-                       ,context={'data_list':data_list })
+        return  HttpResponseRedirect(reverse('accountapp:hello_world'))
+                #  이 주소로 가라
 
 
 # return  render(request,'accountapp/hello_world.html'
@@ -33,6 +38,22 @@ def hello_world(request):
         # 뉴모델 안에있는 모든 값들이 data_list 에 저장됨
         return render(request, 'accountapp/hello_world.html'
                       , context={'data_list': data_list})
+
+
+
+
+
+# 클래스 선언
+# 회원가입 로직 만들기
+class AccountCreateView(CreateView):            # 장고의 create 를 사용함
+    model = User         # 계정을 받는거는 특별한 작업이이때문에 장고가 기본적으로 제공해주는 user을 사용
+    form_class = UserCreationForm
+    success_url =  reverse_lazy('accountapp:hello_world')
+    #( 함수에서 불러오는 방식 = reverse // 클래스에서 불러오는 방식 = reverse_lazy)
+    # 클래스에서 리버스 쓸때는 에러가 생김
+    template_name = 'accountapp/create.html'
+
+
 
 
 
