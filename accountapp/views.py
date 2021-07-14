@@ -48,6 +48,8 @@ def hello_world(request):
 class AccountCreateView(CreateView):            # 장고의 create 를 사용함
     model = User         # 계정을 받는거는 특별한 작업이이때문에 장고가 기본적으로 제공해주는 user을 사용
     form_class = UserCreationForm
+    # 일반적으로 제공하는sign up 화면폼이라 생각하자
+
     success_url =  reverse_lazy('accountapp:hello_world')
     #( 함수에서 불러오는 방식 = reverse // 클래스에서 불러오는 방식 = reverse_lazy)
     # 클래스에서 리버스 쓸때는 에러가 생김
