@@ -51,6 +51,7 @@ class AccountCreateView(CreateView):            # 장고의 create 를 사용함
     # 일반적으로 제공하는sign up 화면폼이라 생각하자
 
     success_url =  reverse_lazy('accountapp:hello_world')
+    # 회원가입이 성공시 가야하는 url
     #( 함수에서 불러오는 방식 = reverse // 클래스에서 불러오는 방식 = reverse_lazy)
     # 클래스에서 리버스 쓸때는 에러가 생김
     template_name = 'accountapp/create.html'
