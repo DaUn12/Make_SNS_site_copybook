@@ -18,4 +18,32 @@
     <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
 
     {#  알아서 가져올 사이트를 제공 텍스트 파일을 가져올건데 css확장자로 가져올 거라는 말임 #}
+
+    {# 강사님이 제공해준 폰트 서식 (안외워도 ok)    #}
+    {#  모든 페이지에 적용됨 #}
+    <style>
+        @font-face {        {# 폰트선언 #}
+            font-family: 'NanumSquareR';        {# family : 그 나눔체로 선언하여 폰트에 적용 #}
+            src: local('NanumSquareR'),
+            url("{% static 'fonts/NanumSquareR.otf' %}") format("opentype");
+        {# local : 우리 서버로 요청보내는 컴퓨터에서 나눔스퀘어라는 폰트가 있는지 찾고 있으면 적용 #}
+        {# local에서 폰트가 없으면 url로 이동하여 적용 시켜라 #}
+        }
+        @font-face {
+            font-family: 'NanumSquareEB';
+            src: local('NanumSquareEB'),
+            url("{% static 'fonts/NanumSquareEB.otf' %}") format("opentype");
+        }
+        @font-face {
+            font-family: 'NanumSquareB';
+            src: local('NanumSquareB'),
+            url("{% static 'fonts/NanumSquareB.otf' %}") format("opentype");
+        }
+        @font-face {
+            font-family: 'NanumSquareL';
+            src: local('NanumSquareL'),
+            url("{% static 'fonts/NanumSquareL.otf' %}") format("opentype");
+        }
+    </style>
+
 </head>
