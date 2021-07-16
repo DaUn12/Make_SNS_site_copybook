@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from accountapp.models import NewModel
 
@@ -56,8 +56,10 @@ class AccountCreateView(CreateView):            # 장고의 create 를 사용함
     # 클래스에서 리버스 쓸때는 에러가 생김
     template_name = 'accountapp/create.html'
 
-
-
+class AccountDetailView(DetailView):    # 장고의 디테일 뷰를 상속받는 클래스를 생성
+    model = User
+    context_object_name = 'target_user'     # 상세 계정을 뽑아낼 변수를 추출
+    template_name = 'accountapp/detail.html' # 상세정보를 할때 어떤 걸로 랜더링할지
 
 
 
