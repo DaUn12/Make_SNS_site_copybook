@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, UpdateView
 
 from accountapp.models import NewModel
 
@@ -58,9 +58,19 @@ class AccountCreateView(CreateView):            # 장고의 create 를 사용함
 
 class AccountDetailView(DetailView):    # 장고의 디테일 뷰를 상속받는 클래스를 생성
     model = User
-    context_object_name = 'target_user'     # 상세 계정을 뽑아낼 변수를 추출
-    template_name = 'accountapp/detail.html' # 상세정보를 할때 어떤 걸로 랜더링할지
+    context_object_name = 'target_user'
+    # 상세 계정을 뽑아낼 변수를 추출
 
+    template_name = 'accountapp/detail.html'
+    # 상세정보를 할때 어떤 걸로 랜더링할지
 
+class AccountUpdateView(UpdateView):
+    model = User
+    form_class = UserCreationForm
+    context_object_name = 'target_user '    # 어떤 객체를 불러올 건지
+    success_url = reverse_lazy ('accountapp:hello_world')
+    # 수정 후 어디론가 재연결 할지
 
+    template_name = 'accountapp/update.html'
+    # 어떤 경로의 html 을 쓸건지
 

@@ -27,13 +27,13 @@
 
         {% else %}      {# 로그인 한 상태라면면 #}
         <span>
-           <a hre="{% url 'accountapp:detail' pk=user.pk %}">
+           <a href="{% url 'accountapp:detail' pk=user.pk %}">
                 MyPage
             </a>
 
         </span>
         <span>
-           <a hre="{% url 'accountapp:logout' %}">
+           <a href="{% url 'accountapp:logout' %}">
                 Logout
             </a>
 
