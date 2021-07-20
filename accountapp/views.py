@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
+from accountapp.forms import AccountCreationForm
 from accountapp.models import NewModel
 
 
@@ -66,8 +67,8 @@ class AccountDetailView(DetailView):    # 장고의 디테일 뷰를 상속받�
 
 class AccountUpdateView(UpdateView):
     model = User
-    form_class = UserCreationForm
-    context_object_name = 'target_user '    # 어떤 객체를 불러올 건지
+    form_class = AccountCreationForm
+    context_object_name = 'target_user'    # 어떤 객체를 불러올 건지
     success_url = reverse_lazy ('accountapp:hello_world')
     # 수정 후 어디론가 재연결 할지
 
@@ -78,6 +79,6 @@ class AccountUpdateView(UpdateView):
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_user'
-    success_url = reverse_lazy('accountapp:hello_world:')
+    success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/delete.html'
 
