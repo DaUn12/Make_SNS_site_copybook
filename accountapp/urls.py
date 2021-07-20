@@ -1,6 +1,6 @@
 from django.urls import path
 
-from accountapp.views import hello_world, AccountCreateView, AccountDetailView, AccountUpdateView
+from accountapp.views import hello_world, AccountCreateView, AccountDetailView, AccountUpdateView, AccountDeleteView
 
 from django.contrib.auth.views import LoginView, LogoutView
 
@@ -28,7 +28,7 @@ urlpatterns = [
     path('update/<int:pk>', AccountUpdateView.as_view(), name ='update'),
     # 어떤주소로 접근할지 / 로직 / 라우트의 이름
 
-
+    path('delete/<int:pk>', AccountDeleteView.as_view(), name = 'delete')
 ]
 # 앱 네임이 accountapp 인걸로 가서 url이 hello_world 로 가라
 
