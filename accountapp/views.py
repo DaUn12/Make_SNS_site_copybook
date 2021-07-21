@@ -12,36 +12,39 @@ from accountapp.models import NewModel
 
 
 def hello_world(request):
-    #request 함수에 method 라는 저장공간이 있음
-    if request.method == 'POST':
-        temp = request.POST.get('input_text')
-        #  요청정보가 request 로 들어가므로 // input_text 를 불러옴
+    if request.user.is_authenticated:   # 로그인이 되어있다면
 
-        new_model =NewModel()         # 변수에 정의한 클래스를 가져옴
-        new_model.text = temp
-        new_model.save()            # DB에 저장
+        if request.method == 'POST':
+            # request 함수에 method 라는 저장공간이 있음
+            temp = request.POST.get('input_text')
+            #  요청정보가 request 로 들어가므로 // input_text 를 불러옴
 
-        # data_list = NewModel.objects.all()
-        # 뉴모델 안에있는 모든 값들이 data_list 에 저장됨
+            new_model =NewModel()         # 변수에 정의한 클래스를 가져옴
+            new_model.text = temp
+            new_model.save()            # DB에 저장
 
-        return  HttpResponseRedirect(reverse('accountapp:hello_world'))
-                #  이 주소로 가라
+            # data_list = NewModel.objects.all()
+            # 뉴모델 안에있는 모든 값들이 data_list 에 저장됨
+
+            return  HttpResponseRedirect(reverse('accountapp:hello_world'))
+                    #  이 주소로 가라
 
 
-# return  render(request,'accountapp/hello_world.html'
-#                ,context={'new_modeltext':temp })     # 텍스트 창에서 입력한 글자가 바로 밑에 출력이 가능하도록 함
-     # HttpResponse 라는 객체를 반환    // 여기에 출력
-     # 붉은색 표시일때 alt+enter 눌러서 from.... 누르면 import 할 필요 x
+    # return  render(request,'accountapp/hello_world.html'
+    #                ,context={'new_modeltext':temp })     # 텍스트 창에서 입력한 글자가 바로 밑에 출력이 가능하도록 함
+         # HttpResponse 라는 객체를 반환    // 여기에 출력
+         # 붉은색 표시일때 alt+enter 눌러서 from.... 누르면 import 할 필요 x
 
+
+        else:
+            data_list = NewModel.objects.all()
+            # 뉴모델 안에있는 모든 값들이 data_list 에 저장됨
+            return render(request, 'accountapp/hello_world.html'
+                          , context={'data_list': data_list})
 
     else:
-        data_list = NewModel.objects.all()
-        # 뉴모델 안에있는 모든 값들이 data_list 에 저장됨
-        return render(request, 'accountapp/hello_world.html'
-                      , context={'data_list': data_list})
-
-
-
+        return HttpResponseRedirect(reverse('accountapp:login'))
+        # 로그인상태가 아니라면 login 화면으로 다시감
 
 
 # 클래스 선언
@@ -75,6 +78,23 @@ class AccountUpdateView(UpdateView):
     template_name = 'accountapp/update.html'
     # 어떤 경로의 html 을 쓸건지
 
+    def get(self, request, *args, **kwargs):
+
+        if request.user.is_authenticated:           # 로그인되었을 시
+            return super().get(request, *args, **kwargs)
+            # get라는 함수를 오버라이딩(쌍속) 하여 부모의 것을 받아 그대로 리턴
+
+        else:       # 로그인아닐 시
+            return HttpResponseRedirect(reverse('accountapp:login'))
+
+    def post(self, request, *args, **kwargs):
+
+        if request.user.is_authenticated:  # 로그인되었을 시
+            return super().post(request, *args, **kwargs)
+            # get라는 함수를 오버라이딩(쌍속) 하여 부모의 것을 받아 그대로 리턴
+
+        else:  # 로그인아닐 시
+            return HttpResponseRedirect(reverse('accountapp:login'))
 
 class AccountDeleteView(DeleteView):
     model = User
@@ -82,3 +102,20 @@ class AccountDeleteView(DeleteView):
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/delete.html'
 
+    def get(self, request, *args, **kwargs):
+
+        if request.user.is_authenticated:  # 로그인되었을 시
+            return super().get(request, *args, **kwargs)
+            # get라는 함수를 오버라이딩(쌍속) 하여 부모의 것을 받아 그대로 리턴
+
+        else:  # 로그인아닐 시
+            return HttpResponseRedirect(reverse('accountapp:login'))
+
+    def post(self, request, *args, **kwargs):
+
+        if request.user.is_authenticated:  # 로그인되었을 시
+            return super().post(request, *args, **kwargs)
+            # get라는 함수를 오버라이딩(쌍속) 하여 부모의 것을 받아 그대로 리턴
+
+        else:  # 로그인아닐 시
+            return HttpResponseRedirect(reverse('accountapp:login'))
