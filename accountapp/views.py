@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render
 
 # Create your views here.
@@ -15,7 +15,7 @@ def hello_world(request):
     if request.user.is_authenticated:   # 로그인이 되어있다면
 
         if request.method == 'POST':
-            # request 함수에 method 라는 저장공간이 있음
+            # request 장고에서 지원하는 객체에 method 라는 저장공간이 있음
             temp = request.POST.get('input_text')
             #  요청정보가 request 로 들어가므로 // input_text 를 불러옴
 
@@ -79,22 +79,23 @@ class AccountUpdateView(UpdateView):
     # 어떤 경로의 html 을 쓸건지
 
     def get(self, request, *args, **kwargs):
-
-        if request.user.is_authenticated:           # 로그인되었을 시
+        if request.user.is_authenticated and self.get_object() == request.user:           # 로그인되었을 시
             return super().get(request, *args, **kwargs)
             # get라는 함수를 오버라이딩(쌍속) 하여 부모의 것을 받아 그대로 리턴
 
         else:       # 로그인아닐 시
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
+            # HttpResponseForbidden() : 금지한다
 
     def post(self, request, *args, **kwargs):
 
-        if request.user.is_authenticated:  # 로그인되었을 시
+        if request.user.is_authenticated and self.get_object() == request.user:  # 로그인되었을 시
             return super().post(request, *args, **kwargs)
             # get라는 함수를 오버라이딩(쌍속) 하여 부모의 것을 받아 그대로 리턴
 
         else:  # 로그인아닐 시
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
+            # HttpResponseForbidden() : 금지한다
 
 class AccountDeleteView(DeleteView):
     model = User
@@ -103,19 +104,20 @@ class AccountDeleteView(DeleteView):
     template_name = 'accountapp/delete.html'
 
     def get(self, request, *args, **kwargs):
-
-        if request.user.is_authenticated:  # 로그인되었을 시
+        if request.user.is_authenticated and self.get_object() == request.user:  # 로그인되었을 시
             return super().get(request, *args, **kwargs)
             # get라는 함수를 오버라이딩(쌍속) 하여 부모의 것을 받아 그대로 리턴
 
         else:  # 로그인아닐 시
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
+            # HttpResponseForbidden() : 금지한다
 
     def post(self, request, *args, **kwargs):
 
-        if request.user.is_authenticated:  # 로그인되었을 시
+        if request.user.is_authenticated and self.get_object() == request.user:  # 로그인되었을 시
             return super().post(request, *args, **kwargs)
             # get라는 함수를 오버라이딩(쌍속) 하여 부모의 것을 받아 그대로 리턴
 
         else:  # 로그인아닐 시
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
+            # HttpResponseForbidden() : 금지한다
