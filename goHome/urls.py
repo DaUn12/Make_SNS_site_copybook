@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),        # 장고가 기본적으로 준 주소 (관리자 페이지)
     path('accounts/', include('accountapp.urls'))           #path = 장고에서 제공하는 기능 , 경로를 accounts
 ]                                                           # accountapp

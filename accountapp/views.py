@@ -78,7 +78,7 @@ class AccountDetailView(DetailView):    # 장고의 디테일 뷰를 상속받�
 
 has_ownership  = [login_required, account_ownership_required]
 # 이렇게 할 시 4줄 말고 2줄로 줄일 수 있음
-# 4 줄로 할 시 
+# 4 줄로 할 시
 # @method_decorator(login_required, 'get')
 # @method_decorator(login_required, 'post')
 # @method_decorator(account_ownership_required, 'get')
@@ -101,7 +101,7 @@ class AccountUpdateView(UpdateView):
 
 
 
-@method_decorator(has_ownership, 'post')
+@method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
 class AccountDeleteView(DeleteView):
     model = User

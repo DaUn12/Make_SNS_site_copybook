@@ -139,6 +139,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# 스태틱경로를 통해 어디로 가져올지
+
+
+# 주로 head.html 에서 외부의 폰트 이런걸 가져옴
+
+
+
+STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
+# 배포할때 쓰임
+# 정적인 파일의 경로
+# os.path : 운영체제관련경로 패키지 ,, join :안에있는 경로를 합쳐 하나의 경로를만듬
+#  BASE_DIR : 최상위 폴더(gohome)의 주소
+
+
+MEDIA_URL = '/media/'
+# media 경로로 왔을 때 저장이되도록
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",            # base_dir : 최상의 폴더 안에있는 static 파일을 찾아 경로로 들인다는 말임
