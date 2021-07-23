@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
@@ -15,8 +15,12 @@ from accountapp.models import NewModel
 
 # (login_url= reverse_lazy('accountapp:login'))
 # login_url 에 직접적인 주소가 아닌 reverse_lazy로 역추적해서 하면됨
+from accountapp.decorators import account_ownership_required
+
+
 @login_required
 # 이거 쓰면 자동적으로 인증과정 됨
+
 def hello_world(request):
 
 
@@ -72,10 +76,19 @@ class AccountDetailView(DetailView):    # 장고의 디테일 뷰를 상속받�
     template_name = 'accountapp/detail.html'
     # 상세정보를 할때 어떤 걸로 랜더링할지
 
+has_ownership  = [login_required, account_ownership_required]
+# 이렇게 할 시 4줄 말고 2줄로 줄일 수 있음
+# 4 줄로 할 시 
+# @method_decorator(login_required, 'get')
+# @method_decorator(login_required, 'post')
+# @method_decorator(account_ownership_required, 'get')
+# @method_decorator(account_ownership_required, 'post')
 
-@method_decorator(login_required, 'get')        # get 메서드에 해주겟다는말
-@method_decorator(login_required, 'post')
-# 이거 쓰면 함수쓰고 로그인 이런거 안해도됨
+
+
+@method_decorator(has_ownership, 'get')        # get 메서드에 해주겟다는말
+@method_decorator(has_ownership, 'post')       # decorate : 데코레이터의 리스트도 받음
+# 이거 쓰면 함수쓰고 로그인 여부만 확인
 class AccountUpdateView(UpdateView):
     model = User
     form_class = AccountCreationForm
@@ -87,8 +100,9 @@ class AccountUpdateView(UpdateView):
     # 어떤 경로의 html 을 쓸건지
 
 
-@method_decorator(login_required, 'get')
-@method_decorator(login_required, 'post')
+
+@method_decorator(has_ownership, 'post')
+@method_decorator(has_ownership, 'post')
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_user'
