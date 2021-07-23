@@ -60,7 +60,7 @@ def hello_world(request):
 class AccountCreateView(CreateView):            # 장고의 create 를 사용함
     model = User         # 계정을 받는거는 특별한 작업이이때문에 장고가 기본적으로 제공해주는 user을 사용
     form_class = UserCreationForm
-    # 일반적으로 제공하는sign up 화면폼이라 생각하자
+    # 일반적으로 장고에서 제공하는 sign up 화면폼이라 생각하자
 
     success_url =  reverse_lazy('accountapp:hello_world')
     # 회원가입이 성공시 가야하는 url

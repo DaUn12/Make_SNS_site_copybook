@@ -54,6 +54,7 @@ INSTALLED_APPS = [                      #설치된 앱을 나열
     'django.contrib.staticfiles',
     'accountapp',                                    #장고가 우리가 만든 앱을 알고있음
     'bootstrap4',
+    'profileapp',
 
 ]
 
