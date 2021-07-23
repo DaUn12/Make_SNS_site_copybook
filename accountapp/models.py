@@ -6,7 +6,7 @@ class NewModel(models.Model):
     # charfield : 문자열 받음 ,max_length : 최대 문자열 255, null = 공란의 여부
 
 
-
+# Model 를 상속받아 모델 형태에서 어떤형식으로 데이터를 받을 지 적어놈
 
 
 
