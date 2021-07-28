@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 # Create your views here.
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView
 
@@ -20,7 +20,7 @@ class ProfileCreateView(CreateView):
 # 어떤모델을 만들 것인지
     form_class = ProfileCreationForm
 # 어떤 폼을 사용할 것인지
-    success_url = reverse_lazy('accountapp:hello_world')
+#     success_url = reverse_lazy('accountapp:hello_world')
 # 어디로 되돌아 갈것인지
     template_name = 'profileapp/create.html'
 #  어떤 html 파일로 만들것인지
@@ -33,6 +33,8 @@ class ProfileCreateView(CreateView):
 
         return super().form_valid(form)
         # 부모에있는 form_valid 를 오버라이드 함
+    def get_success_url(self):
+        return reverse('accountapp:detail',kwargs={'pk' : self.object.user.pk})
 
 @method_decorator(profile_ownership_required, 'get')
 @method_decorator(profile_ownership_required, 'post')
@@ -40,9 +42,12 @@ class ProfileUpdateView(UpdateView):
     model = Profile
     form_class = ProfileCreationForm
     context_object_name ='target_profile'
-    success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'profileapp/update.html'
 
+    def get_success_url(self):
+        return reverse('accountapp:detail', kwargs={'pk':self.object.user.pk})
+
+# self.object  = target.profile 과 같음
 
 
 

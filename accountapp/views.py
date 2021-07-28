@@ -93,12 +93,13 @@ class AccountUpdateView(UpdateView):
     model = User
     form_class = AccountCreationForm
     context_object_name = 'target_user'    # 어떤 객체를 불러올 건지
-    success_url = reverse_lazy ('accountapp:hello_world')
+    # success_url = reverse_lazy ('accountapp:hello_world')
     # 수정 후 어디론가 재연결 할지
-
     template_name = 'accountapp/update.html'
     # 어떤 경로의 html 을 쓸건지
 
+    def get_success_url(self):
+        return reverse('accountapp:detail', kwargs={'pk': self.object.pk})
 
 
 @method_decorator(has_ownership, 'get')
