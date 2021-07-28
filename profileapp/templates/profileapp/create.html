@@ -18,6 +18,7 @@
                   enctype="multipart/form-data"
                   method="post">
                 {#어느 주소로 요청을 보낼건지 써야하는데 안쓰고 url 을 씀#}
+
                 {% csrf_token %}
 {#                {{ form }}  대신            {# 일반 출력할 때 #} {#양이 많을때 #}
                 {% bootstrap_form form %}
