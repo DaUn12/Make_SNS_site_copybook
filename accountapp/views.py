@@ -100,7 +100,8 @@ class AccountUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('accountapp:detail', kwargs={'pk': self.object.pk})
-
+         # popo 자체가 계정앱이기때문에 user를 쓸 필요가 없음
+        # object = target_user 이므로
 
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
