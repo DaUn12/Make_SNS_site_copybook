@@ -20,7 +20,8 @@
                <h2 class="NNS_B">
                    {{ target_user.profile.nickname }} {# 존재한다면 보고자하는 계정의 아이디를 보고싶음#}
                         {% if target_user == user %}    {# 로그아웃 시 안보이도록 하게끔 하는 것 #}
-                            <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                            <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}"
+                                class="material-icons round_button">
                                 edit
                             </a>
                             {# 이파일 자체가 어카운트앱 파일이므로 그걸 먼저 쓰고 profile 을 연계해야함함 #}
