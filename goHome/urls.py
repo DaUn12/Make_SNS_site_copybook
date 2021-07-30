@@ -23,6 +23,7 @@ urlpatterns = [
     path('accounts/', include('accountapp.urls')),         #path = 장고에서 제공하는 기능 , 경로를 accounts
     path('profiles/', include('profileapp.urls')),
     # profiles 로가는 겨올를 설정
+    path('articles/', include('articleapp.urls')),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT )
 # 이미지 모양을 되기 위해 media 에 static 을 가져옴
