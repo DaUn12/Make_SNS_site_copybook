@@ -1,13 +1,19 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse_lazy, reverse
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
+from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
 
 
+# login_required : 장고에서 지원함 ( 로그인 여부에 따라 인증과정 실시 )
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
 class ArticleCreateView(CreateView):
     model = Article
     form_class = ArticleCreationForm
@@ -21,12 +27,14 @@ class ArticleCreateView(CreateView):
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk':self.object.pk})
 
+
 class ArticleDetailView(DetailView):
     model = Article
     context_object_name = 'target_article'
     template_name = 'articleapp/detail.html'
 
-
+@method_decorator(article_ownership_required, 'get')
+@method_decorator(article_ownership_required, 'post')
 class ArticleUpdateView(UpdateView):
     model = Article
     form_class = ArticleCreationForm            # create 폼을 쓴다는 이야기임
@@ -36,6 +44,8 @@ class ArticleUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
+@method_decorator(article_ownership_required, 'get')
+@method_decorator(article_ownership_required, 'post')
 class ArticleDeleteView(DeleteView):
     model = Article
     context_object_name = 'target_article'
