@@ -16,6 +16,20 @@
             <img src="{{ target_article.image.url }}" alt="">
                 {# alt : 옆에 실행이 안되었을 경우 대체 할 것 #}
             {{ target_article.content }}
+
+            <div>
+                <a href="{% url 'articleapp:update' pk=target_article.pk %}"
+                    class="btn btn-success rounded-pill px-5">
+                    Update
+                                    {# success :초록색 #}
+                </a>
+                 <a href="{% url 'articleapp:delete' pk=target_article.pk %}"
+                    class="btn btn-danger rounded-pill px-5">
+                    Delete
+
+                </a>
+
+            </div>
         </div>
     </div>
 
