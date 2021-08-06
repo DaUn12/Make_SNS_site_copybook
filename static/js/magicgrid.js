@@ -289,7 +289,7 @@ magicGrid.listen();
 var masonrys = document.getElementsByTagName("img")
 //document : 문서 전ㅊㅔ  ,,, getElementsByTagName : 태그이름이르 찾기
 
-for( let i=0; masonrys.length; i++ ) {
+for( let i=0; i < masonrys.length; i++ ) {
   masonrys[i].addEventListener('load',  function (){
     magicGrid.positionItems();
     }
