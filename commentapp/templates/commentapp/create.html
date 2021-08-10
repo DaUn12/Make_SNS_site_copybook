@@ -1,12 +1,6 @@
-
-{# extends 구문을 사용#}
-{% extends 'base.html' %}       {#base.html 에서 했던 뼈대 이름으로 하여금 #}
-
 {% load bootstrap4 %}
 {# 부트스트랩을 회원가입 창에다 쓰겠다는 이야기 #}
 
-{% block content %}
-{#제목#}
     <div class="text-center mw-500 m-auto">   {#부트스트랩에서 제공하는 텍스트 중앙 정렬 #}
         {# base.css 파일에서 mw-500 을 불러옴, m-auto : 부트스트랩안에있는 자동정렬 #}
         <div class="m-5">       {# 상하좌우 마진 5만큼 추가 #}
@@ -27,9 +21,5 @@
                 {#트리거해줄 버튼을 생성 // 부트스트랩에서 서식을 따옴 #}
                </div>
             </form>
-
         </div>
     </div>
-
-
-{%  endblock %}
