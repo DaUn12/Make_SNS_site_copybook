@@ -13,6 +13,9 @@
                 {% csrf_token %}
 {#                {{ form }}  대신            {# 일반 출력할 때 #} {#양이 많을때 #}
                 {% bootstrap_form form %}
+                <input type="hidden"
+                       name="article_pk"
+                       value="{{ target_article.pk }}">
 
 
                <div class = 'm-5'>
