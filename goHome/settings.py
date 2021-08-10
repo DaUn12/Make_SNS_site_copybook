@@ -56,6 +56,7 @@ INSTALLED_APPS = [                      #설치된 앱을 나열
     'bootstrap4',
     'profileapp',
     'articleapp',
+    'commentapp',
 
 ]
 
