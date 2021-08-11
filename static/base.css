@@ -64,3 +64,12 @@
     box-shadow: 0 0 1rem grey;
 /*   그림자 넣기 */
 }
+
+.comment_box {
+    text-align: left;
+    border: solid;      /* 실선 */
+    border-color: green;
+    border-radius: 1rem;
+    margin: 1rem;
+    padding: 1rem;  /* 내부여백 */
+}
