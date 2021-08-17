@@ -18,9 +18,8 @@ from accountapp.models import NewModel
 from accountapp.decorators import account_ownership_required
 
 
-@login_required
-# 이거 쓰면 자동적으로 인증과정 됨
-
+# @login_required
+# 이거 쓰면 자동적으로 로그인 화면으로 감
 def hello_world(request):
 
 
