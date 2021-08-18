@@ -25,7 +25,8 @@ urlpatterns = [
     # profiles 로가는 겨올를 설정
     path('articles/', include('articleapp.urls')),
     path('comments/', include('commentapp.urls')),
-    path('projects/', include('projectapp.urls'))
+    path('projects/', include('projectapp.urls')),
+    path('subscribes/', include('subscribeapp.urls'))
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT )
 # 이미지 모양을 되기 위해 media 에 static 을 가져옴
