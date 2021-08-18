@@ -8,6 +8,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.forms import AccountCreationForm
 from accountapp.models import NewModel
@@ -20,6 +21,9 @@ from accountapp.decorators import account_ownership_required
 
 # @login_required
 # 이거 쓰면 자동적으로 로그인 화면으로 감
+from articleapp.models import Article
+
+
 def hello_world(request):
 
 
@@ -67,13 +71,18 @@ class AccountCreateView(CreateView):            # 장고의 create 를 사용함
     # 클래스에서 리버스 쓸때는 에러가 생김
     template_name = 'accountapp/create.html'
 
-class AccountDetailView(DetailView):    # 장고의 디테일 뷰를 상속받는 클래스를 생성
+class AccountDetailView(DetailView, MultipleObjectMixin):    # 장고의 디테일 뷰를 상속받는 클래스를 생성
     model = User
     context_object_name = 'target_user'
     # 상세 계정을 뽑아낼 변수를 추출
 
     template_name = 'accountapp/detail.html'
     # 상세정보를 할때 어떤 걸로 랜더링할지
+    paginate_by = 20
+
+    def get_context_data(self, **kwargs):
+        article_list = Article.objects.filter(writer=self.object)
+        return super().get_context_data(object_list=article_list, **kwargs)
 
 has_ownership  = [login_required, account_ownership_required]
 # 이렇게 할 시 4줄 말고 2줄로 줄일 수 있음
