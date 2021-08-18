@@ -1,30 +1,26 @@
 
-{% extends 'base.html'%}
-{# 뼈대 html 을 가져옴 #}
 {% load static %}
 {# static 불러온다는 문구#}
 
-
-{% block content %}
     <style>
         .container{
             padding: 0;
             margin: 0 auto;
         }
         .container div {
+          width: 45%;
+            max-width: 200px;
           display: flex;
           justify-content: center;
           align-items: center;
           border-radius: 1rem;
                 flex-direction: column;
                 {# 아래쪽으로 밑에 제목이 나오도록 // 기본값은 오른쪽임(행 = row )   #}
-
+          box-shadow: 0 0 1rem #7b2727;
         }
 
         .container img{
-            width: 7rem;        {# 너비는 다 채우겠다 #}
-            height: 7rem;
-            object-fit: cover;
+            width: 100%;        {# 너비는 다 채우겠다 #}
             border-radius: 1rem;
 
         }
@@ -33,12 +29,12 @@
 
 
     <div class="container my-4">        {# my : 마진 상하 #}
-       {% for project in project_list %}
+       {% for article in article_list %}
           <div>
-            <a href="{% url 'projectapp:detail' pk=project.pk %}">
-                <img src="{{ project.image.url }}" alt="">
+            <a href="{% url 'articleapp:detail' pk=article.pk %}">
+                <img src="{{ article.image.url }}" alt="">
             </a>
-          <span class="my-2 NNS_B">{{ project.name | truncatechars:10 }}</span>
+          <span class="my-2 NNS_B">{{ article.title }}</span>
 
 
           </div>
@@ -55,11 +51,17 @@
     {% include 'snippet/pagination.html' %}
 
     <div class="text-center my-5">
-        <a href="{% url 'projectapp:create' %}"
+        <a href="{% url 'articleapp:create' %}"
+            class="btn btn-dark rounded-pill  material-icons">
+            {#  px-5 : 글씨를 좌우여백 조정 #}
+            {# material-icons : 아이콘 만들기 #}
+            brush
+        </a>
+
+        <a href="{% url 'articleapp:create' %}"
             class="btn btn-outline-dark rounded-pill px-5">
             {#  px-5 : 글씨를 좌우여백 조정 #}
-            Create Project
+            Create Article
         </a>
 
     </div>
-{% endblock %}
