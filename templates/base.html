@@ -8,6 +8,15 @@
 
 {% include 'header.html'  %}        {#  장고가 개입해서 사용하겠다라는 표시#}
 <hr>                                {# 구분선 넣기 #}
+
+{% for message in messages %}   {# 장고에서 기존적으로 제공함 #}
+    <div class="text-center">
+        <div class="btn btn-success rounded-pill px-5">
+            {{ message }}
+        </div>
+    </div>
+{% endfor %}
+
 {% block content %}                 {# block content 를 선언 #}
 {% endblock %}
 
