@@ -59,6 +59,7 @@ INSTALLED_APPS = [                      #설치된 앱을 나열
     'commentapp',
     'projectapp',
     'subscribeapp',
+    'likeapp',
 
 ]
 

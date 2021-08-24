@@ -26,7 +26,8 @@ urlpatterns = [
     path('articles/', include('articleapp.urls')),
     path('comments/', include('commentapp.urls')),
     path('projects/', include('projectapp.urls')),
-    path('subscribe/', include('subscribeapp.urls'))
+    path('subscribe/', include('subscribeapp.urls')),
+    path('likes/', include('like.urls'))
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT )
 # 이미지 모양을 되기 위해 media 에 static 을 가져옴
