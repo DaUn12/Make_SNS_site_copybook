@@ -80,4 +80,14 @@
         font-size: 13px;
     }
 }
-/* 최대너비
+
+a{
+    text-decoration: none;
+    color : black;
+
+}
+
+/*마우스 올렸을때ㅔ*/
+a:hover{
+    color: black;
+}
