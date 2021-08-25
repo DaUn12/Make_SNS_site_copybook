@@ -63,6 +63,12 @@ INSTALLED_APPS = [                      #설치된 앱을 나열
 
 ]
 
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.INFO: 'danger',
+}
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
