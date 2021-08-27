@@ -181,7 +181,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = reverse_lazy('accountapp:hello_world')   # 로그인 재연결
+LOGIN_REDIRECT_URL = reverse_lazy('articleapp:list')   # 로그인 재연결
 LOGOUT_REDIRECT_URL =reverse_lazy('accountapp:login')
 
 #  reverse 쓰는 것 자체가 함수
