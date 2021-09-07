@@ -2,7 +2,7 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
-RUN echo 'gdfhsh'
+RUN echo 'gdfhssdh'
 
 RUN git clone https://github.com/DaUn12/goHome-first-.git
     # 깃 주소복붙하여 여기다 옮김
