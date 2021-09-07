@@ -16,9 +16,12 @@ RUN echo "SECRET_KEY=django-insecure-6bldunix=$y%a35v0k8!l6&li$76tu8@sp##g3dz2ur
 RUN pip install -r requirements.txt
     # 얼린파일을 다시 설치함
 
+RUN pip install gunicorn
+
 RUN python manage.py migrate
 
 EXPOSE 8000
     # 사용할 포트
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "goHome.wsgi", "--bind", "0.0.0.0:8000"]
+# 구니콘, 메인파일이름.wsgi, 어떤ip에요청을받을지
