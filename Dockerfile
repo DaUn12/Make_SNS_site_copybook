@@ -20,6 +20,8 @@ RUN pip install gunicorn
 
 RUN python manage.py migrate
 
+RUN python manage.py collectstatic
+
 EXPOSE 8000
     # 사용할 포트
 
