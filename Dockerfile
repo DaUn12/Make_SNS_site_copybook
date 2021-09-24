@@ -2,7 +2,7 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
-RUN echo 'gdfhssdh'
+RUN echo 'asdsdadsd'
 
 RUN git clone https://github.com/DaUn12/goHome-first-.git
     # 깃 주소복붙하여 여기다 옮김
@@ -18,12 +18,10 @@ RUN pip install -r requirements.txt
 
 RUN pip install gunicorn
 
-RUN python manage.py migrate
-
-RUN python manage.py collectstatic
+RUN pip install mysqlclient
 
 EXPOSE 8000
     # 사용할 포트
 
-CMD ["gunicorn", "goHome.wsgi", "--bind", "0.0.0.0:8000"]
+CMD ["bash", "-c", "python manage.py collectstatic --noinput --settings=goHome.settings.deploy && python manage.py migrate --settings=goHome.settings.deploy && gunicorn --env DJANGO_SETTINGS_MODULE=goHome.settings.deploy goHome.wsgi --bind 0.0.0.0:8000"]
 # 구니콘, 메인파일이름.wsgi, 어떤ip에요청을받을지
