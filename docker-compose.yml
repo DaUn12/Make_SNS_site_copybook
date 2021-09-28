@@ -24,14 +24,14 @@ services: # 하나로 묶어주는 서비스를 만듬
       - MARIADB_USER
       - MARIADB_PASSWORD
     environment:
-      MARIADB_ROOT_PASSWORD: password1234
+      MARIADB_ROOT_PASSWORD: /run/secrets/MARIADB_ROOT_PASSWORD
       MARIADB_DATABASE: django
-      MARIADB_USER: django
-      MARIADB_PASSWORD: password1234
+      MARIADB_USER: /run/secrets/MARIADB_USER
+      MARIADB_PASSWORD: /run/secrets/MARIADB_PASSWORD
       # 마리아디비 env 는 메인파일 - settings - deploy
 
   django:   # django 부분
-    image: gis_4ban_django:3
+    image: gis_4ban_django:5
     networks:
       - gis_4ban_network
 
@@ -57,3 +57,9 @@ volumes:
 secrets:
   DJANGO_SECRET_KEY:
     external: true
+  MARIADB_ROOT_PASSWORD:
+        external: true
+  MARIADB_USER:
+      external: true
+  MARIADB_PASSWORD:
+      external: true
